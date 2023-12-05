@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+        h1 {
+            padding: 40px;
+            text-align: center;
+        }
+    </style>
+    <div class="container">
+        <h1>Add Product</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <label for="id_title" class="col-sm-3 col-form-label text-end">Title:</label>
+                <div class="col-sm-9">
+                    <input type="text" id="id_title" name="title" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="id_price" class="col-sm-3 col-form-label text-end">Price:</label>
+                <div class="col-sm-9">
+                    <input type="number" id="id_price" name="price" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="id_image_url" class="col-sm-3 col-form-label text-end">Image:</label>
+                <div class="col-sm-9">
+                    <input type="url" id="id_image" name="image">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="id_category" class="col-sm-3 col-form-label text-end">Category:</label>
+                <div class="col-sm-9">
+                    <select id="id_category" name="category">
+                        {% for category in categories %}
+                            <option value="{{ category.id }}">{{ category.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="id_description" class="col-sm-3 col-form-label text-end">Description:</label>
+                <div class="col-sm-9">
+                    <textarea id="id_description" name="description"></textarea>
+                </div>
+            </div>
+
+
+
+            <div class="row mb-3">
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
